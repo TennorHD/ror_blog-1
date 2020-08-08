@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+    http_basic_authenticate_with name: "dhh", password: "secret", except: [:index, :show]
+    
     def index
         @articles = Article.all
     end
@@ -44,7 +46,7 @@ class ArticlesController < ApplicationController
         @article.destroy
         
         redirect_to articles_path
-
+    end
     # best practice:
     # order:
     # index, show, new, edit, create, update and destroy (public)
